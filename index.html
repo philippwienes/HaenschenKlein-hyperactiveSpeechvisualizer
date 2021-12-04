@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html  lang="de" class="-isLoading german -activeOnboarding">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Hänschen Klein</title>
+      <meta name="description" content="Haenschen Klein - the hyperactive speech visualizer">
+      <meta name="keywords" content="digital artwork">
+      <meta name="author" content="salzcrowd & philipp">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="libraries/intro.css">
+      <!-- <link rel="stylesheet" href="dist/css/style.css"> -->
+      <link rel="stylesheet" href="dist/css/style.css">
+      <meta property="og:image" content="https://www.einfach.es/hk-thumb2.jpg" />
+      <link type="image/gif" rel="shortcut icon" href="favicon.gif">
+      <script src="https://unpkg.com/tone@13.8.25/build/Tone.js"></script>
+      <script>
+         var _paq = window._paq = window._paq || [];
+         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+         _paq.push(["setCookieDomain", "*.haenschenklein.wtf"]);
+         _paq.push(['trackPageView']);
+         _paq.push(['enableLinkTracking']);
+         (function() {
+           var u="//analytics.haenschenklein.wtf/";
+           _paq.push(['setTrackerUrl', u+'matomo.php']);
+           _paq.push(['setSiteId', '1']);
+           var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+           g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+         })();
+      </script>
+   </head>
+   <body id="html" class="">
+      <img src="https://einfach.es/thumb.png" style="display:none"/>
+      <!-- <div class="cam-wrap hidden" style="display:hidden">
+         <video class="cam"></video>
+         </div> -->
+      <svg class="defs-only" style="position:absolute;">
+         <filter id="chromakey" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+            <feColorMatrix type="matrix"
+               values="1   0   0   0   0
+               0   1   0   0   0
+               0   0   1   0   0
+               1.5 -2.3  1.5 0   1" />
+         </filter>
+      </svg>
+      <div class="hints">
+         <div class="hint">
+            <span class="de"> Spiele mit der Lautstärke deiner Stimme. </span>
+            <span class="en"> Play with your voice volume. </span>
+         </div>
+         <div class="hint">
+            <span class="de">             Sag doch mal verschiedene Farben. </span>
+            <span class="en">  Say different colors. </span>
+         </div>
+         <div class="hint">
+            <span class="de">                       Mit "Tempo" und "Normal" kannst du die Geschwindigkeit vom Feedback Modus einstellen. </span>
+            <span class="en">            With "Speed" and "Normal" you can set the speed of the feedback mode. </span>
+         </div>
+         <div class="hint">
+            <span class="de">    In der Vollversion wird es eine Gruppen Voicechat Funktion geben. Zoom auf Steroiden. </span>
+            <span class="en">           In the full version there will be a group voice chat function. Imagine Zoom on steroids. </span>
+         </div>
+         <div class="hint">
+            <span class="de">                               Der Feedbackmodus funktioniert nur mit Lautsprechern oder Stereo Mix.
+            </span>
+            <span class="en">                  The feedback mode only works with speakers or stereo mix.
+            </span>
+         </div>
+         <div class="hint">
+            <span class="de">                        Mit "Bitte Zurück" kannst du dir vergangene Frames ansehen.
+            </span>
+            <span class="en">               With "History" you can view past frames.
+            </span>
+         </div>
+         <!-- <div class="hint">  <span class="de">
+            Versuche doch mal "Russisch", "Chinesisch" oder "Englisch" zu sagen.</span>
+            <span class="en">
+            Try saying "Russian", "Chinese" or "English".</span>
+
+            </div> -->
+         <div class="hint">
+            <span class="de">             Manchmal wird die API überflutet. Dann besuche https://www.qwant.com/?l=de und fülle das Captcha aus. </span>
+            <span class="en">                 Sometimes the API is flooded. Then visit https://www.qwant.com/?l=de and fill out the captcha.
+            </span>
+         </div>
+      </div>
+      <div class="donation " style="width:100%; display:none!important;">
+         <div class="donation-wrap">
+            <a class="close" style="width:1em;height:1em;">
+               <svg style="display:block" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+                  <path fill="#231F20" d="M9.016,40.837c0.195,0.195,0.451,0.292,0.707,0.292c0.256,0,0.512-0.098,0.708-0.293l14.292-14.309
+                     l14.292,14.309c0.195,0.196,0.451,0.293,0.708,0.293c0.256,0,0.512-0.098,0.707-0.292c0.391-0.39,0.391-1.023,0.001-1.414
+                     L26.153,25.129L40.43,10.836c0.39-0.391,0.39-1.024-0.001-1.414c-0.392-0.391-1.024-0.391-1.414,0.001L24.722,23.732L10.43,9.423
+                     c-0.391-0.391-1.024-0.391-1.414-0.001c-0.391,0.39-0.391,1.023-0.001,1.414l14.276,14.293L9.015,39.423
+                     C8.625,39.813,8.625,40.447,9.016,40.837z"/>
+               </svg>
+            </a>
+            <div class="imgbox">
+               <img class="sad-meme"src="dist/mergl.gif"/>
+               <figure  class="hungry" >
+                  <img src="dist/fridge.jpg"/>
+               </figure>
+            </div>
+            <div class="textbox" >
+               <iframe id='kofiframe' src='https://ko-fi.com/ph1l2p/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:4px;background:#f9f9f9;' height='712' title='ph1l2p'></iframe>
+            </div>
+         </div>
+      </diV>
+      <div class="loading">
+         <div class="loading-wrap">
+            <div class="circle">
+               <p>Loading...</p>
+            </div>
+         </div>
+      </div>
+      <div class="onboarding">
+         <div class="onboarding-step-1 step -active">
+            <span><strong>Welcome fellow human!</strong><br/>
+            Please select your language and make sure your microphone is working. For the best experience please use loudspeakers so the microphone can hear the program outputs.</span>
+            <div class="button-wrap">
+               <button data-lang="german">German</button>
+               <button data-lang="english">English</button>
+            </div>
+         </div>
+         <div class="onboarding-step-2 step">
+            <span><strong>Möchtest du ein kurzes Tutorial sehen?</strong></span>
+            <div class="button-wrap">
+               <button onClick="startTutorial()">Ja</button>
+               <button  onClick="stopOnboarding()">Nein</button>
+            </div>
+         </div>
+      </div>
+      <div class="hans" ></div>
+      <header>
+         <div class="stuff">
+            <div class="interaction-indicator">
+            </div>
+            <div class="action-indicator">
+            </div>
+            <div class="livestreamIndicator">
+            </div>
+            <div class="notification">
+               <div class="notification-wrap">
+                  Nächste Sendung in:
+                  <div class="notification-messsage" style="font-size:180%;"><span class="notification-timeleft">0</span><span class="notification-einheit"> </span>
+                  </div>
+               </div>
+            </div>
+            <svg preserveAspectRatio="none" id="visualizer" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+               <defs>
+                  <mask id="mask">
+                     <g id="maskGroup">
+                     </g>
+                  </mask>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                     <stop offset="0%" style="stop-color:#ff0a0a;stop-opacity:1" />
+                     <stop offset="20%" style="stop-color:#f1ff0a;stop-opacity:1" />
+                     <stop offset="90%" style="stop-color:#d923b9;stop-opacity:1" />
+                     <stop offset="100%" style="stop-color:#050d61;stop-opacity:1" />
+                  </linearGradient>
+               </defs>
+               <rect x="0" y="0" width="100%" height="100%" fill="url(#gradient)" mask="url(#mask)"></rect>
+            </svg>
+         </div>
+         <div style="font-size:38%;" class="uhrzeit">
+            <span style="font-size:280%;"></span>
+         </div>
+         <div class="branding">
+            <span>Hänschen <br>Klein</span>
+         </div>
+         <nav class="submenu -karte" style="display:none">
+            <div class="submenu-wrap">
+               <ul>
+                  <li class="submenu-zoomIn">Reinzoomen</li>
+                  <li class="submenu-zoomOut">Rauszoomen</li>
+                  <li class="submenu-dynamisch ">Dynamisch</li>
+               </ul>
+            </div>
+         </nav>
+         <a    data-intro="Sag: 'Hallo Hallo' um das Menu zu öffnen" data-step="1" class="step-1 step-1-trigger menu-toggle">⬤</a>
+         <a  data-intro="Sag: 'Ok' um das Menu zu schließen" data-step="4" class="step-4" >X</a>
+         <div    class="step-3 aside-variante1">
+            <div class="a3d" style="--n: 15;">
+               <div class="step-2-trigger" data-intro="Hier siehst du die Keywords, mit denen du zwischen den verschiednen Visualisierungen umschalten kannst. Sag zum Beispiel 'Collage'" data-step="2"></div>
+               <div  class="mainMenu">
+               </div>
+               <div class="menu-wrap -original">
+                  <div class="menu-item">
+                     <p>Stimme</p>
+                     <p>Voice</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Schnell</p>
+                     <p>Words</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Denken</p>
+                     <p>Thinking</p>
+                  </div>
+                  <div style="display:none"class="menu-item">
+                     <p>Zeichen</p>
+                     <p>Symbol</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Fallen</p>
+                     <p>Falling</p>
+                  </div>
+                  <div style="display:none;" class="menu-item">
+                     <p>Text</p>
+                     <p>Text</p>
+                  </div>
+                  <div style="display:none;" class="menu-item">
+                     <p>Wörter</p>
+                     <p>Words</p>
+                  </div>
+                  <div style="display:none"  class="menu-item">
+                     <p>Text</p>
+                     <p>Text</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Collage</p>
+                     <p>Meme</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Surfen</p>
+                     <p>Surfing</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Wikipedia</p>
+                     <p>Wikipedia</p>
+                  </div>
+                  <div class="menu-item">
+                     <p>Shoppen</p>
+                     <p>Shopping</p>
+                  </div>
+               </div>
+            </div>
+            <div data-intro="Hier kannst du diverse Einstellungen vornehmen. Sage dafür zum Beispiel 'Feedback'" data-step="3"    class="step-3 step-3-trigger aside-menu-small -top">
+               <p  class="menu-filter">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="filter-span -german">Not safe for Work</span>
+                  <span class="filter-span -englisch">Not safe for Work</span>
+                  <span class="switch-status"></span>
+               </p>
+               <p class="menu-zoom">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="karte-span -german">Bitte zurück</span>
+                  <span class="karte-span -englisch">History</span>
+                  <span class="switch-status"></span>
+               </p>
+               <p class="menu-feedback">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="feedback-span">Feedback</span><span class="switch-status"></span>
+               </p>
+               <p class="menu-sound">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="sound-span">Sound</span>
+               </p>
+               <p class="menu-poesie">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="poesie-span -german">Poesie</span>
+                  <span class="poesie-span -englisch">Poetic</span>
+                  <span class="switch-status"></span>
+               </p>
+               <p style="display:none!important"  class="menu-lottozahlen">
+                  <label style="display:none" class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                  </label>
+                  <span class="lottozahlen-span">Lottozahlen</span><span class="switch-status"></span>
+               </p>
+            </div>
+         </div>
+         <!-- <img style="position:absolute;right:1em;bottom:1em;width:10vw;" src="https://192.168.178.42:1080logo-invert.png" /> -->
+         <select style="display:none" id="voiceSelect">
+         </select>
+         <svg id='image' version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+               <filter id="offset" x="-5%" y="-8%" height="230%" width="140%" transform="translate(30,0)">
+                  <feFlood flood-color="rgba(0,0,255,1)" result="COLOR" />
+                  <feComposite operator="in" in="COLOR" in2="SourceAlpha" />
+                  <feOffset dx="5" dy="5" result="B" />
+                  <feFlood flood-color="rgba(255,0,0,1)" esult="COLOR2" />
+                  <feComposite operator="in" in="COLOR2" in2="SourceAlpha" />
+                  <feOffset dx="-3" dy="-4" result="C" />
+                  <feMerge>
+                     <feMergeNode in="B" />
+                     <feMergeNode in="C" />
+                     <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+               </filter>
+               <filter id="offsetSmall" x="-1%" y="-1%" height="100%" width="100%" transform="translate(15,0)">
+                  <feFlood flood-color="rgba(0,0,255,1)" result="COLOR" />
+                  <feComposite operator="in" in="COLOR" in2="SourceAlpha" />
+                  <feOffset dx="1" dy="1" result="B" />
+                  <feFlood flood-color="rgba(255,0,0,1)" esult="COLOR2" />
+                  <feComposite operator="in" in="COLOR2" in2="SourceAlpha" />
+                  <feOffset dx="-1" dy="-1" result="C" />
+                  <feMerge>
+                     <feMergeNode in="B" />
+                     <feMergeNode in="C" />
+                     <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+               </filter>
+               <filter id="offsetTiny" x="0" y="0" height="100%" width="100%" transform="translate(15,0)">
+                  <feFlood flood-color="rgba(0,0,255,1)" result="COLOR" />
+                  <feComposite operator="in" in="COLOR" in2="SourceAlpha" />
+                  <feOffset dx="0" dy="0" result="B" />
+                  <feFlood flood-color="rgba(255,0,0,1)" esult="COLOR2" />
+                  <feComposite operator="in" in="COLOR2" in2="SourceAlpha" />
+                  <feOffset dx="-1" dy="-1" result="C" />
+                  <feMerge>
+                     <feMergeNode in="B" />
+                     <feMergeNode in="C" />
+                     <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+               </filter>
+               <filter id="displacementSmall" x="0%" y="0%" height="100%" width="100%">
+                  <feDisplacementMap scale="5" in2="SourceGraphic" xChannelSelector="G" />
+               </filter>
+               <filter id="displacement" x="0%" y="0%" height="100%" width="100%">
+                  <feDisplacementMap scale="150" in2="SourceGraphic" xChannelSelector="G" />
+               </filter>
+            </defs>
+         </svg>
+      </header>
+      <div>
+         <div class="message-popup">
+         </div>
+         <div class="app-history">
+         </div>
+         <div class="abspann">
+         </div>
+         <div class="abspann-bg">
+         </div>
+         <div class="readingIndicator -hidden"></div>
+         <div class="readingDurationIndicator -hidden"></div>
+      </div>
+      <div id="physic-wrap" class="physic-wrap">
+      </div>
+      <div class="app-main-wrap" id="app-main-wrap">
+         <div class="app-main dragscroll">
+            <div class="items">
+            </div>
+            <div class="transkript">
+            </div>
+         </div>
+         <div class="graphen">
+            <canvas id="graphVolume" height="400"></canvas>
+            <canvas style="display:none" id="graphPitch" height="400"></canvas>
+            <div id="detector" class="vague">
+               <div class="pitch"><span id="pitch"></span></div>
+               <div class="note"><span id="note"></span><span style="display:none;" id="noteNum"></span></div>
+               <canvas style="display:none;" id="output" width=300 height=42></canvas>
+               <div style="display:none;" id="detune"><span id="detune_amt"></span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+            </div>
+         </div>
+      </div>
+      <script src="libraries/jquery.min.js" type="text/javascript"></script>
+      <script src="libraries/intro.js" type="text/javascript"></script>
+      <script src="libraries/jquery.blast.min.js"></script>
+      <script src="libraries/TweenMax.min.js"></script>
+      <script src='libraries/volume-meter.js'></script>
+      <script src="libraries/matter.min.js"></script>
+      <script src="libraries/pitch-detect.js"></script>
+      <script src="libraries/smoothie.min.js"></script>
+      <script src="libraries/ola.min.js"></script>
+      <!-- <script src="dist/js/visualize-dist.js"></script>
+         <script src="dist/js/speech-dist.js"></script> -->
+      <script src="js/visualize.js" type="text/javascript"></script>
+      <script src="js/speech.js " type="text/javascript"> </script>
+   </body>
+</html>
